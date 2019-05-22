@@ -1,4 +1,6 @@
-- script: |
+
+- task: Bash@3
+      # Use the environment variables input below to pass secret variables to this script'
     docker-compose -f docker-compose.yml --project-directory . -p docs up -d
     docker wait docs_sut_1
     docker-compose -f docker-compose.yml --project-directory . down
