@@ -1,4 +1,4 @@
 - script: |
     docker-compose -f docker-compose.yml --project-directory . -p docs up -d
-    docker wait docs_sut_1
+    docker wait elasticsearch
     docker-compose -f docker-compose.yml --project-directory . down
