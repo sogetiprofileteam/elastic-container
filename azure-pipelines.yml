@@ -10,3 +10,4 @@ variables:
 steps:
 # Build release
 - script: docker-compose up -d
+
