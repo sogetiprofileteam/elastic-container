@@ -8,8 +8,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-# Build release
-- script: docker-compose up -d
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Visual Studio Enterprise (94065302-e183-4130-919d-f3bee7d40990)'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Build services'
+
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
@@ -17,3 +22,8 @@ steps:
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Push services'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
