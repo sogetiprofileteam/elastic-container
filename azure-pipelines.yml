@@ -12,18 +12,6 @@ steps:
   inputs:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Visual Studio Enterprise (94065302-e183-4130-919d-f3bee7d40990)'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Build services'
-
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'Visual Studio Enterprise (94065302-e183-4130-919d-f3bee7d40990)'
+    azureContainerRegistry: '{"loginServer":"profileappregistry.azurecr.io", "id" : "/subscriptions/94065302-e183-4130-919d-f3bee7d40990/resourceGroups/ProfileApp/providers/Microsoft.ContainerRegistry/registries/profileappregistry"}'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Push services'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
